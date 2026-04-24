@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meu Perfil — AlexandrIA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy:       #0B1523;
+      --navy-mid:   #132035;
+      --navy-light: #1C2E47;
+      --navy-card:  #162540;
+      --gold:       #C9943A;
+      --gold-light: #E8B96A;
+      --white:      #FFFFFF;
+      --text-dim:   #A0AEC0;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    body { font-family: 'DM Sans', sans-serif; background-color: var(--navy); color: var(--white); line-height: 1.6; }
+    h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--gold); }
+    
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 8%; background: rgba(11, 21, 35, 0.95); border-bottom: 1px solid rgba(201, 148, 58, 0.2); position: sticky; top: 0; z-index: 1000; }
+    .nav-logo { text-decoration: none; display: flex; align-items: center; gap: 4px; }
+    .nav-logo-text { color: var(--gold); font-size: 1.5rem; font-weight: 700; font-family: 'Playfair Display', serif; }
+    .nav-logo-ia { color: var(--white); font-style: italic; font-size: 1.25rem; font-family: 'Playfair Display', serif; }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; }
+    .nav-links a { text-decoration: none; color: var(--text-dim); font-size: 0.9rem; transition: var(--transition); }
+    .nav-links a:hover { color: var(--gold); }
+    .btn-nav { background-color: var(--gold); color: var(--navy) !important; padding: 0.6rem 1.25rem; border-radius: 4px; font-weight: 600; text-decoration: none; }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 4rem 2rem; }
+    
+    .profile-header { display: flex; align-items: center; gap: 2rem; margin-bottom: 4rem; padding: 2rem; background: var(--navy-mid); border-radius: 12px; border: 1px solid rgba(201, 148, 58, 0.1); }
+    .profile-avatar { width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--gold); background: var(--navy-light); display: flex; align-items: center; justify-content: center; font-size: 3rem; color: var(--gold); font-family: 'Playfair Display', serif; }
+    .profile-info h1 { margin-bottom: 0.5rem; }
+    .profile-info p { color: var(--text-dim); font-size: 1rem; }
+
+    .profile-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 2rem; }
+    
+    .card { background: var(--navy-card); border: 1px solid rgba(201, 148, 58, 0.15); border-radius: 12px; padding: 2rem; margin-bottom: 2rem; }
+    .card h3 { font-size: 1.25rem; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(201, 148, 58, 0.1); padding-bottom: 0.5rem; }
+
+    .stat-row { display: flex; justify-content: space-between; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .stat-label { color: var(--text-dim); font-size: 0.9rem; }
+    .stat-value { color: var(--gold-light); font-weight: 600; }
+
+    .activity-item { display: flex; gap: 1rem; margin-bottom: 1.2rem; }
+    .activity-icon { color: var(--gold); font-size: 1.2rem; }
+    .activity-text p { font-size: 0.9rem; margin: 0; }
+    .activity-text span { font-size: 0.75rem; color: var(--text-dim); }
+
+    .btn-outline { display: inline-block; padding: 0.5rem 1rem; border: 1px solid var(--gold); color: var(--gold); text-decoration: none; border-radius: 4px; font-size: 0.8rem; transition: var(--transition); margin-top: 1rem; }
+    .btn-outline:hover { background: var(--gold); color: var(--navy); }
+
+    footer { background-color: var(--navy-mid); padding: 5rem 8% 2rem; border-top: 1px dotted rgba(201, 148, 58, 0.3); margin-top: 5rem; }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr repeat(3, 1fr); gap: 4rem; }
+    .footer-col h5 { color: var(--gold); font-size: 1rem; margin-bottom: 2rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 1rem; }
+    .footer-col ul li a { text-decoration: none; color: var(--text-dim); font-size: 0.9rem; transition: var(--transition); }
+    .footer-col ul li a:hover { color: var(--gold); }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index_original.html" class="nav-logo">
+      <span class="nav-logo-text">Alexandr</span><span class="nav-logo-ia">IA</span>
+    </a>
+    <div class="nav-links">
+      <a href="index_original.html">Início</a>
+      <a href="tccs.html">Repositório</a>
+      <a href="comunidade.html">Comunidade</a>
+      <a href="perfil.html" style="color: var(--gold);">Meu Perfil</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="profile-header">
+      <div class="profile-avatar" id="user-initial">M</div>
+      <div class="profile-info">
+        <h1 id="user-name">Michelle Kaolin Souza</h1>
+        <p id="user-course">Desenvolvimento de Software Multiplataforma • FATEC Osasco</p>
+        <div style="margin-top: 10px;">
+          <span id="user-level-badge" style="background: rgba(201, 148, 58, 0.1); color: var(--gold); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; border: 1px solid var(--gold);">Carregando nível...</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="profile-grid">
+      <aside>
+        <div class="card">
+          <h3>Estatísticas</h3>
+          <div class="stat-row">
+            <span class="stat-label">TCCs Enviados</span>
+            <span class="stat-value" id="count-tccs">0</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Resumos Gerados</span>
+            <span class="stat-value" id="count-resumos">0</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Contribuições</span>
+            <span class="stat-value" id="count-contribs">0</span>
+          </div>
+          <div class="stat-row" style="border: none;">
+            <span class="stat-label">Pontos de Impacto</span>
+            <span class="stat-value" id="user-points">0 XP</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Conquistas</h3>
+          <p style="font-size: 0.85rem; color: var(--text-dim);">Acesse sua galeria para ver medalhas desbloqueadas.</p>
+          <a href="#" class="btn-outline">Ver Todas</a>
+        </div>
+      </aside>
+
+      <main>
+        <div class="card">
+          <h3>Atividade Recente</h3>
+          <div id="activity-feed">
+             <p style="color: var(--text-dim); font-size: 0.9rem;">Carregando atividades...</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Meus Documentos Salvos</h3>
+          <p style="color: var(--text-dim); font-size: 0.9rem;">Você ainda não favoritou nenhum resumo externo.</p>
+          <a href="tccs.html" class="btn-outline">Explorar Repositório</a>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo"><span class="nav-logo-text">Alexandr</span><span class="nav-logo-ia">IA</span></a>
+        <p>Plataforma acadêmica com IA baseada em RAG. Resumos confiáveis.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Conta</h5>
+        <ul>
+          <li> <a href="contribuir.html">Contribuir</a></li>
+          <li><a href="perfil.html">Configurações</a></li>
+          <li><a href="logout.html">Sair da conta</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Comunidade</h5>
+        <ul>
+          <li><a href="comunidade.html">Meu Feed</a></li>
+          <li><a href="dashboards.html">Rankings</a></li>
+          <li><a href="biblioteca.html">Minha Biblioteca</a></li>
+          <li><a href="contribuir.html">Contribuir</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Suporte</h5>
+        <ul>
+          <li><a href="contato.html">Central de Ajuda</a></li>
+          <li><a href="configurações.html">Configurações</a></li>
+          <li><a href="privacidade.html">Privacidade</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    async function carregarDadosPerfil() {
+        const userId = localStorage.getItem('userId') || 1; 
+        try {
+            const response = await fetch(`http://localhost:8080/api/usuarios/${userId}`);
+            if (!response.ok) throw new Error('Erro ao buscar dados');
+            
+            const user = await response.json();
+
+            document.getElementById('user-name').textContent = user.nome;
+            document.getElementById('user-initial').textContent = user.nome.charAt(0).toUpperCase();
+            document.getElementById('user-points').textContent = `${user.pontos} XP`;
+            
+            if(user.curso) {
+                document.getElementById('user-course').textContent = `${user.curso} • FATEC Osasco`;
+            }
+
+            if(user.nivel_nome) {
+                document.getElementById('user-level-badge').textContent = `${user.nivel_icone} ${user.nivel_nome}`;
+            }
+
+            document.getElementById('count-tccs').textContent = user.total_tccs || 0;
+            document.getElementById('count-resumos').textContent = user.total_resumos || 0;
+            document.getElementById('count-contribs').textContent = user.total_feedbacks || 0;
+
+        } catch (error) {
+            console.error('Falha ao carregar perfil:', error);
+        }
+    }
+
+    window.onload = carregarDadosPerfil;
+  </script>
+
+</body>
+</html>

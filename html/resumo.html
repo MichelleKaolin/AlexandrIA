@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resumo Inteligente — AlexandrIA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* COPIADO EXATAMENTE DA SUA INDEX_ORIGINAL */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy:       #0B1523;
+      --navy-mid:   #132035;
+      --navy-light: #1C2E47;
+      --navy-card:  #162540;
+      --gold:       #C9943A;
+      --gold-light: #E8B96A;
+      --gold-pale:  #F5DFA8;
+      --cream:      #FDF9F0;
+      --white:      #FFFFFF;
+      --text-dim:   #A0AEC0;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    body { font-family: 'DM Sans', sans-serif; background-color: var(--navy); color: var(--white); line-height: 1.6; }
+    h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--gold); }
+    
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 8%; background: rgba(11, 21, 35, 0.95); border-bottom: 1px solid rgba(201, 148, 58, 0.2); position: sticky; top: 0; z-index: 1000; }
+    .nav-logo { text-decoration: none; display: flex; align-items: center; gap: 4px; }
+    .nav-logo-text { color: var(--gold); font-size: 1.5rem; font-weight: 700; font-family: 'Playfair Display', serif; }
+    .nav-logo-ia { color: var(--white); font-style: italic; font-size: 1.25rem; font-family: 'Playfair Display', serif; }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; }
+    .nav-links a { text-decoration: none; color: var(--text-dim); font-size: 0.9rem; font-weight: 500; transition: var(--transition); }
+    .nav-links a:hover { color: var(--gold); }
+    .btn-nav { background-color: var(--gold); color: var(--navy) !important; padding: 0.6rem 1.25rem; border-radius: 4px; font-weight: 600; }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 4rem 2rem; }
+    .layout-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 2.5rem; align-items: start; }
+    
+    .card-resumo { background: var(--navy-card); border: 1px solid rgba(201, 148, 58, 0.15); border-radius: 12px; padding: 2.5rem; position: relative; }
+    .tag-rag { position: absolute; top: 1.5rem; right: 1.5rem; background: rgba(201, 148, 58, 0.1); color: var(--gold-light); padding: 0.4rem 0.8rem; border-radius: 4px; font-size: 0.75rem; font-family: 'DM Mono', monospace; border: 1px solid rgba(201, 148, 58, 0.3); }
+    
+    .fontes-secao { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); }
+    .fonte-item { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 10px; }
+    .fonte-item::before { content: '•'; color: var(--gold); }
+
+    .sidebar-chat { background: var(--navy-mid); border: 1px solid rgba(201, 148, 58, 0.1); border-radius: 12px; padding: 1.5rem; position: sticky; top: 120px; }
+    .chat-box { height: 350px; background: var(--navy); border-radius: 8px; margin-bottom: 1rem; padding: 1rem; overflow-y: auto; border: 1px solid rgba(255,255,255,0.05); }
+    .input-chat { width: 100%; background: var(--navy-light); border: 1px solid rgba(201, 148, 58, 0.3); padding: 0.8rem; border-radius: 6px; color: var(--white); outline: none; }
+    .input-chat:focus { border-color: var(--gold); }
+
+    footer { background-color: var(--navy-mid); padding: 5rem 8% 2rem; border-top: 1px dotted rgba(201, 148, 58, 0.3); margin-top: 5rem; }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr repeat(3, 1fr); gap: 4rem; margin-bottom: 4rem; }
+    .footer-brand p { color: var(--text-dim); font-size: 0.9rem; margin-top: 1.5rem; max-width: 300px; }
+    .footer-col h5 { color: var(--gold); font-size: 1rem; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 1px; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 1rem; }
+    .footer-col ul li a { text-decoration: none; color: var(--text-dim); font-size: 0.9rem; transition: var(--transition); }
+    .footer-col ul li a:hover { color: var(--gold); padding-left: 5px; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index_original.html" class="nav-logo">
+      <span class="nav-logo-text">Alexandr</span><span class="nav-logo-ia">IA</span>
+    </a>
+    <div class="nav-links">
+      <a href="index_original.html">Início</a>
+      <a href="tccs.html">Repositório</a>
+      <a href="biblioteca.html">Biblioteca</a>
+      <a href="perfil.html" class="btn-nav">Meu Perfil</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="layout-grid">
+      <main>
+        <div class="card-resumo">
+          <span class="tag-rag">Verificado via RAG</span>
+          <h1 style="margin-bottom: 1.5rem;">Normalização: Terceira Forma Normal (3FN)</h1>
+          <p style="margin-bottom: 1.5rem;">A Terceira Forma Normal (3FN) é um estágio crucial no design de bancos de dados relacionais. De acordo com os materiais acadêmicos processados, uma tabela está na 3FN se, e somente se, estiver na Segunda Forma Normal (2FN) e todos os seus atributos não-chave forem independentes entre si.</p>
+          <p>Isso elimina a dependência transitiva, garantindo que cada coluna de dados dependa exclusivamente da chave primária. Na prática, isso reduz a redundância e protege a integridade dos dados contra anomalias de inserção e exclusão.</p>
+          
+          <div class="fontes-secao">
+            <h4 style="font-size: 1.1rem; margin-bottom: 1rem;">Fontes de Dados Utilizadas:</h4>
+            <div class="fonte-item">ELMASRI, Ramez; NAVATHE, Shamkant B. "Sistemas de Banco de Dados". 7. ed.</div>
+            <div class="fonte-item">SOUZA, Michelle. "Implementação de Normalização em Sistemas Multiplataforma", FATEC 2026.</div>
+          </div>
+        </div>
+      </main>
+
+      <aside class="sidebar-chat">
+        <h3 style="font-size: 1.25rem; margin-bottom: 1rem;">Pergunte ao Documento</h3>
+        <div class="chat-box">
+          <p style="font-size: 0.85rem; color: var(--gold); margin-bottom: 0.5rem;">AlexandrIA:</p>
+          <p style="font-size: 0.9rem; color: var(--text-dim);">Olá! Com base nos livros e TCCs acima, identifiquei que a 3FN evita erros de atualização. Deseja ver um exemplo prático?</p>
+        </div>
+        <input type="text" class="input-chat" placeholder="Digite sua dúvida acadêmica...">
+        <p style="font-size: 0.7rem; color: var(--text-dim); margin-top: 1rem; text-align: center;">IA treinada com fontes oficiais.</p>
+      </aside>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo">
+          <span class="nav-logo-text">Alexandr</span><span class="nav-logo-ia">IA</span>
+        </a>
+        <p>Plataforma acadêmica com IA baseada em RAG. Resumos confiáveis a partir de fontes reais.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Plataforma</h5>
+        <ul>
+          <li><a href="#">Busca inteligente</a></li>
+          <li><a href="tccs.html">Repositório de TCCs</a></li>
+          <li><a href="biblioteca.html">Biblioteca</a></li>
+          <li><a href="#">Dashboard</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Comunidade</h5>
+        <ul>
+          <li><a href="#">Contribuir</a></li>
+          <li><a href="#">Enviar TCC</a></li>
+          <li><a href="#">Dar feedback</a></li>
+          <li><a href="#">Gamificação</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Projeto</h5>
+        <ul>
+          <li><a href="#">Sobre o AlexandrIA</a></li>
+          <li><a href="#">Tecnologia RAG</a></li>
+          <li><a href="#">Privacidade</a></li>
+          <li><a href="#">Contato</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

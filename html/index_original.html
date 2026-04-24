@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AlexandrIA — Plataforma Acadêmica com IA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:       #0B1523;
+      --navy-mid:   #132035;
+      --navy-light: #1C2E47;
+      --navy-card:  #162540;
+      --gold:       #C9943A;
+      --gold-light: #E8B96A;
+      --gold-pale:  #F5DFA8;
+      --cream:      #F2EAD8;
+      --cream-dim:  #D6CAAE;
+      --teal:       #3ABFB0;
+      --teal-dark:  #279588;
+      --text-main:  #EDE6D6;
+      --text-muted: #8FA3B8;
+      --text-faint: #4E6278;
+      --border:     rgba(201, 148, 58, 0.18);
+      --border-dim: rgba(255,255,255,0.07);
+      --radius-sm:  6px;
+      --radius-md:  12px;
+      --radius-lg:  20px;
+      --radius-xl:  32px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--navy);
+      color: var(--text-main);
+      font-size: 16px;
+      line-height: 1.7;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(201,148,58,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,148,58,0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    .label-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3rem;
+      height: 68px;
+      background: rgba(11,21,35,0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-dim);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: baseline;
+      gap: 0;
+      text-decoration: none;
+    }
+
+    .nav-logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--cream);
+      letter-spacing: -0.02em;
+    }
+
+    .nav-logo-ia {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      letter-spacing: 0.01em;
+    }
+
+    .nav-links a:hover { color: var(--cream); }
+
+    .nav-btn {
+      padding: 8px 22px;
+      border-radius: 100px;
+      background: var(--gold);
+      color: var(--navy) !important;
+      font-weight: 600 !important;
+      font-size: 13px !important;
+      transition: background 0.2s, transform 0.15s !important;
+    }
+
+    .nav-btn:hover {
+      background: var(--gold-light) !important;
+      color: var(--navy) !important;
+      transform: translateY(-1px);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 100px 2rem 80px;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,148,58,0.10) 0%, transparent 70%);
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 6px 16px;
+      margin-bottom: 28px;
+      background: rgba(201,148,58,0.06);
+    }
+
+    .hero-eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--teal);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.75); }
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 6vw, 74px);
+      font-weight: 700;
+      max-width: 800px;
+      margin-bottom: 20px;
+      color: var(--cream);
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      font-size: 17px;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin-bottom: 48px;
+      line-height: 1.75;
+    }
+
+    /* ── SEARCH BAR ── */
+    .search-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 620px;
+      margin-bottom: 18px;
+    }
+
+    .search-bar {
+      width: 100%;
+      height: 60px;
+      border-radius: 100px;
+      background: var(--navy-mid);
+      border: 1px solid rgba(201,148,58,0.3);
+      padding: 0 160px 0 54px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      color: var(--text-main);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .search-bar::placeholder { color: var(--text-faint); }
+
+    .search-bar:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201,148,58,0.12);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-faint);
+      pointer-events: none;
+    }
+
+    .search-btn {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 44px;
+      padding: 0 22px;
+      border-radius: 100px;
+      background: var(--gold);
+      color: var(--navy);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      letter-spacing: 0.02em;
+    }
+
+    .search-btn:hover { background: var(--gold-light); transform: translateY(-51%) translateX(0); }
+
+    .search-hints {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      font-size: 12px;
+      color: var(--text-faint);
+    }
+
+    .hint-chip {
+      padding: 4px 12px;
+      border-radius: 100px;
+      border: 1px solid var(--border-dim);
+      background: var(--navy-mid);
+      color: var(--text-muted);
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .hint-chip:hover {
+      border-color: var(--gold);
+      color: var(--gold-pale);
+      background: rgba(201,148,58,0.08);
+    }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      margin: 0 2rem 80px;
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 48px;
+      border: 1px solid var(--border-dim);
+      background: var(--navy-mid);
+    }
+
+    .stat-item:first-child { border-radius: var(--radius-md) 0 0 var(--radius-md); }
+    .stat-item:last-child  { border-radius: 0 var(--radius-md) var(--radius-md) 0; }
+
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-faint);
+      margin-top: 4px;
+      letter-spacing: 0.03em;
+    }
+
+    .stat-divider {
+      width: 1px;
+      background: var(--border-dim);
+      align-self: stretch;
+    }
+
+    /* ── SECTION COMMONS ── */
+    section {
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 80px 2rem;
+    }
+
+    .section-header {
+      margin-bottom: 52px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 700;
+      color: var(--cream);
+      margin-top: 10px;
+    }
+
+    .section-header p {
+      font-size: 16px;
+      color: var(--text-muted);
+      margin-top: 12px;
+      max-width: 480px;
+    }
+
+    /* ── CARDS GRID ── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--navy-card);
+      border: 1px solid var(--border-dim);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      transition: border-color 0.25s, transform 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .card:hover {
+      border-color: rgba(201,148,58,0.3);
+      transform: translateY(-3px);
+    }
+
+    .card:hover::before { opacity: 1; }
+
+    .card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-sm);
+      background: rgba(201,148,58,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      font-size: 20px;
+    }
+
+    .card-icon.teal-icon {
+      background: rgba(58,191,176,0.12);
+    }
+
+    .card h3 {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--cream);
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    .card-badge {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 11px;
+      font-family: 'DM Mono', monospace;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--teal);
+      background: rgba(58,191,176,0.1);
+      border-radius: 100px;
+      padding: 3px 10px;
+    }
+
+    /* ── HOW IT WORKS (RAG) ── */
+    .rag-section {
+      background: var(--navy-mid);
+      border-top: 1px solid var(--border-dim);
+      border-bottom: 1px solid var(--border-dim);
+    }
+
+    .rag-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .rag-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .rag-step {
+      display: flex;
+      gap: 20px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--border-dim);
+      position: relative;
+    }
+
+    .rag-step:last-child { border-bottom: none; }
+
+    .step-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--gold);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .step-content h4 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--cream);
+      margin-bottom: 4px;
+    }
+
+    .step-content p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .rag-demo {
+      background: var(--navy-card);
+      border: 1px solid var(--border-dim);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .demo-header {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border-dim);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .demo-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+    }
+
+    .demo-body {
+      padding: 20px 18px;
+    }
+
+    .demo-query {
+      background: rgba(201,148,58,0.08);
+      border: 1px solid rgba(201,148,58,0.2);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      font-size: 13px;
+      color: var(--gold-pale);
+      margin-bottom: 16px;
+      font-style: italic;
+    }
+
+    .demo-step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px 0;
+      font-size: 12px;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border-dim);
+    }
+
+    .demo-step-item:last-child { border-bottom: none; }
+
+    .demo-step-icon {
+      font-size: 14px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .demo-step-text strong {
+      color: var(--teal);
+      font-weight: 500;
+      display: block;
+      font-size: 11px;
+      font-family: 'DM Mono', monospace;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    /* ── TCC REPOSITORY ── */
+    .tcc-table-wrap {
+      background: var(--navy-card);
+      border: 1px solid var(--border-dim);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .tcc-filters {
+      display: flex;
+      gap: 12px;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border-dim);
+      flex-wrap: wrap;
+    }
+
+    .filter-select {
+      height: 34px;
+      padding: 0 14px;
+      border-radius: 100px;
+      background: var(--navy-mid);
+      border: 1px solid var(--border-dim);
+      color: var(--text-muted);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .filter-select:focus { border-color: var(--gold); }
+
+    table.tcc-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .tcc-table thead th {
+      padding: 12px 20px;
+      text-align: left;
+      font-size: 11px;
+      font-family: 'DM Mono', monospace;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      border-bottom: 1px solid var(--border-dim);
+      background: rgba(0,0,0,0.15);
+    }
+
+    .tcc-table tbody tr {
+      border-bottom: 1px solid var(--border-dim);
+      transition: background 0.15s;
+    }
+
+    .tcc-table tbody tr:last-child { border-bottom: none; }
+    .tcc-table tbody tr:hover { background: rgba(201,148,58,0.04); }
+
+    .tcc-table td {
+      padding: 14px 20px;
+      color: var(--text-muted);
+      vertical-align: middle;
+    }
+
+    .tcc-table td:first-child { color: var(--cream); font-weight: 500; }
+
+    .type-pill {
+      display: inline-block;
+      font-size: 10px;
+      font-family: 'DM Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 3px 9px;
+      border-radius: 100px;
+    }
+
+    .type-pill.tcc    { background: rgba(58,191,176,0.12); color: var(--teal); }
+    .type-pill.livro  { background: rgba(201,148,58,0.12); color: var(--gold); }
+    .type-pill.artigo { background: rgba(131,86,180,0.14); color: #B48EE0; }
+
+    .link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 12px;
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .link-btn:hover { color: var(--gold-light); }
+
+    /* ── GAMIFICATION ── */
+    .levels-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .level-card {
+      background: var(--navy-card);
+      border: 1px solid var(--border-dim);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      text-align: center;
+      transition: transform 0.25s, border-color 0.25s;
+    }
+
+    .level-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(201,148,58,0.25);
+    }
+
+    .level-icon {
+      font-size: 36px;
+      display: block;
+      margin-bottom: 14px;
+    }
+
+    .level-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--cream);
+      margin-bottom: 8px;
+    }
+
+    .level-pts {
+      font-size: 12px;
+      font-family: 'DM Mono', monospace;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+    }
+
+    .level-perks {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .level-perks li {
+      font-size: 13px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      justify-content: center;
+    }
+
+    .perk-check { color: var(--teal); }
+
+    /* ── PROFILE PREVIEW ── */
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .profile-card {
+      background: var(--navy-card);
+      border: 1px solid var(--border-dim);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+    }
+
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-dim);
+    }
+
+    .avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--teal));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .profile-name {
+      font-weight: 600;
+      color: var(--cream);
+      font-size: 16px;
+    }
+
+    .profile-meta {
+      font-size: 12px;
+      color: var(--text-faint);
+      margin-top: 2px;
+    }
+
+    .points-bar-wrap {
+      margin-bottom: 16px;
+    }
+
+    .points-bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--text-faint);
+      margin-bottom: 6px;
+    }
+
+    .points-bar {
+      height: 6px;
+      background: var(--navy-mid);
+      border-radius: 100px;
+      overflow: hidden;
+    }
+
+    .points-fill {
+      height: 100%;
+      border-radius: 100px;
+      background: linear-gradient(90deg, var(--gold), var(--teal));
+    }
+
+    .history-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border-dim);
+      font-size: 13px;
+    }
+
+    .history-item:last-child { border-bottom: none; }
+
+    .history-title {
+      color: var(--text-muted);
+      max-width: 240px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .history-date {
+      font-size: 11px;
+      color: var(--text-faint);
+      font-family: 'DM Mono', monospace;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: var(--navy-mid);
+      border-top: 1px solid var(--border-dim);
+    }
+
+    .cta-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 100px 2rem;
+    }
+
+    .cta-inner h2 {
+      font-size: clamp(32px, 4vw, 52px);
+      max-width: 640px;
+      color: var(--cream);
+      margin-bottom: 18px;
+    }
+
+    .cta-inner h2 em { color: var(--gold); }
+
+    .cta-inner p {
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 440px;
+      margin-bottom: 36px;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      padding: 14px 32px;
+      border-radius: 100px;
+      background: var(--gold);
+      color: var(--navy);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      letter-spacing: 0.01em;
+    }
+
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+    .btn-secondary {
+      padding: 14px 32px;
+      border-radius: 100px;
+      background: transparent;
+      color: var(--cream);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s, transform 0.15s;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--gold);
+      color: var(--gold-pale);
+      transform: translateY(-2px);
+    }
+
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border-dim);
+      padding: 48px 3rem 36px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 40px;
+      max-width: 1160px;
+      margin: 0 auto 40px;
+    }
+
+    .footer-brand p {
+      font-size: 13px;
+      color: var(--text-faint);
+      margin-top: 12px;
+      line-height: 1.7;
+      max-width: 220px;
+    }
+
+    .footer-col h5 {
+      font-size: 12px;
+      font-family: 'DM Mono', monospace;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 16px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-col a {
+      font-size: 13px;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover { color: var(--gold-pale); }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 28px;
+      border-top: 1px solid var(--border-dim);
+      font-size: 12px;
+      color: var(--text-faint);
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 900px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { gap: 1.2rem; }
+      .rag-layout { grid-template-columns: 1fr; gap: 32px; }
+      .levels-grid { grid-template-columns: 1fr; }
+      .profile-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .stats-bar { flex-wrap: wrap; }
+      .stat-item:first-child, .stat-item:last-child { border-radius: var(--radius-md); }
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 0 1rem; }
+      .nav-links li:not(:last-child) { display: none; }
+      .hero h1 { font-size: 38px; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" class="nav-logo">
+      <span class="nav-logo-text">Alexandr</span><span class="nav-logo-ia">IA</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#funcionalidades">Funcionalidades</a></li>
+      <li><a href="#como-funciona">Como funciona</a></li>
+      <li><a href="tccs.html">TCCs</a></li>
+      <li><a href="comunidade.html">Comunidade</a></li>
+      <li><a href="login.html">Entrar</a></li>
+      <li><a href="cadastro.html" class="nav-btn">Cadastrar</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-eyebrow">
+      <span class="hero-eyebrow-dot"></span>
+      <span class="label-tag">Powered by RAG + LangChain</span>
+    </div>
+    <h1>A biblioteca acadêmica <em>inteligente</em> que você merecia</h1>
+    <p class="hero-sub">Resumos confiáveis gerados a partir de livros e TCCs reais. Sem alucinação. Com fontes. Com contexto.</p>
+
+    <div class="search-wrapper">
+      <svg class="search-icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input class="search-bar" type="text" placeholder="Ex: Normalização 3FN, Redes Neurais, Engenharia de Software…" />
+      <button class="search-btn">Pesquisar →</button>
+    </div>
+
+    <div class="search-hints">
+      <span>Sugestões:</span>
+      <span class="hint-chip">Banco de Dados</span>
+      <span class="hint-chip">Algoritmos</span>
+      <span class="hint-chip">Engenharia de Software</span>
+      <span class="hint-chip">Redes de Computadores</span>
+      <span class="hint-chip">IA e Machine Learning</span>
+    </div>
+  </div>
+
+
+  <div class="stats-bar">
+    <div class="stat-item">
+      <span class="stat-number">2.400+</span>
+      <span class="stat-label">Materiais indexados</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-number">380+</span>
+      <span class="stat-label">TCCs disponíveis</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-number">12.000+</span>
+      <span class="stat-label">Resumos gerados</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-number">97%</span>
+      <span class="stat-label">Precisão com RAG</span>
+    </div>
+  </div>
+
+  <section id="funcionalidades">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="label-tag">Funcionalidades</span>
+        <h2>Tudo que você precisa para estudar melhor</h2>
+        <p>Do resumo gerado por IA ao repositório de TCCs indexado e pesquisável.</p>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-icon">🔍</div>
+          <h3>Busca Inteligente</h3>
+          <p>Encontre materiais por tema, matéria ou palavra-chave com resultados semânticos, não apenas por palavra exata.</p>
+          <span class="card-badge">Semântica</span>
+        </div>
+        <div class="card">
+          <div class="card-icon">🧠</div>
+          <h3>Resumo com RAG</h3>
+          <p>A IA responde com base em trechos reais de livros e TCCs. Cada resposta cita as fontes utilizadas.</p>
+          <span class="card-badge">Anti-alucinação</span>
+        </div>
+        <div class="card">
+          <div class="card-icon teal-icon">💬</div>
+          <h3>Chat Contextual</h3>
+          <p>Após ler um resumo, continue a conversa. Pergunte, aprofunde, peça exemplos — tudo com base no mesmo documento.</p>
+          <span class="card-badge">Interativo</span>
+        </div>
+        <div class="card">
+          <div class="card-icon">⚠️</div>
+          <h3>Feedback Ativo</h3>
+          <p>Encontrou algo errado ou incompleto? Marque e escreva. O sistema usa seu feedback para regenerar respostas melhores.</p>
+          <span class="card-badge">Qualidade</span>
+        </div>
+        <div class="card">
+          <div class="card-icon teal-icon">🎓</div>
+          <h3>Portal de TCCs</h3>
+          <p>Repositório de trabalhos acadêmicos com busca por curso, ano e tema. Pesquise o que já foi feito na sua área.</p>
+          <span class="card-badge">Acadêmico</span>
+        </div>
+        <div class="card">
+          <div class="card-icon">📑</div>
+          <h3>Biblioteca Curada</h3>
+          <p>Catálogo de livros com metadados completos, links externos e resumos gerados por IA de forma ética e legal.</p>
+          <span class="card-badge">100% legal</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="rag-section" id="como-funciona">
+    <div class="section-inner">
+      <div class="rag-layout">
+        <div>
+          <div class="section-header" style="margin-bottom: 32px;">
+            <span class="label-tag">Tecnologia RAG</span>
+            <h2>Como a IA responde sem inventar</h2>
+            <p>RAG (Retrieval-Augmented Generation) significa que a IA busca os dados antes de falar.</p>
+          </div>
+
+          <div class="rag-steps">
+            <div class="rag-step">
+              <div class="step-num">1</div>
+              <div class="step-content">
+                <h4>Upload e indexação</h4>
+                <p>PDFs de TCCs e livros são quebrados em pedaços e transformados em embeddings vetoriais.</p>
+              </div>
+            </div>
+            <div class="rag-step">
+              <div class="step-num">2</div>
+              <div class="step-content">
+                <h4>Busca semântica</h4>
+                <p>Sua pergunta é convertida em vetor e o sistema busca os trechos mais relevantes no ChromaDB.</p>
+              </div>
+            </div>
+            <div class="rag-step">
+              <div class="step-num">3</div>
+              <div class="step-content">
+                <h4>Contexto + IA</h4>
+                <p>Os trechos encontrados são enviados junto com sua pergunta para o modelo GPT/Gemini.</p>
+              </div>
+            </div>
+            <div class="rag-step">
+              <div class="step-num">4</div>
+              <div class="step-content">
+                <h4>Resposta com fontes</h4>
+                <p>A IA responde baseada nos dados reais e exibe as referências usadas na geração.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rag-demo">
+          <div class="demo-header">
+            <div class="demo-dot" style="background:#FF5F56;"></div>
+            <div class="demo-dot" style="background:#FFBD2E; margin:0 4px;"></div>
+            <div class="demo-dot" style="background:#27C93F;"></div>
+            <span style="font-size:12px;color:var(--text-faint);margin-left:8px;font-family:'DM Mono',monospace;">alexandria › rag_pipeline.py</span>
+          </div>
+          <div class="demo-body">
+            <div class="demo-query">
+              "Explique normalização 3FN em banco de dados"
+            </div>
+            <div class="demo-step-item">
+              <span class="demo-step-icon">📡</span>
+              <div class="demo-step-text">
+                <strong>Vector Search</strong>
+                ChromaDB retornou 4 trechos relevantes de 2 fontes
+              </div>
+            </div>
+            <div class="demo-step-item">
+              <span class="demo-step-icon">📄</span>
+              <div class="demo-step-text">
+                <strong>Fonte 1 — Banco de Dados (Silberschatz)</strong>
+                "…3FN exige que todos os atributos não-chave dependam funcionalmente…"
+              </div>
+            </div>
+            <div class="demo-step-item">
+              <span class="demo-step-icon">🎓</span>
+              <div class="demo-step-text">
+                <strong>Fonte 2 — TCC: Modelagem Relacional (2022)</strong>
+                "…a aplicação da 3FN elimina dependências transitivas e reduz anomalias…"
+              </div>
+            </div>
+            <div class="demo-step-item">
+              <span class="demo-step-icon">🤖</span>
+              <div class="demo-step-text">
+                <strong>GPT — Resposta gerada</strong>
+                Resumo contextualizado com citação automática das 2 fontes acima
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="repositorio">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="label-tag">Repositório</span>
+        <h2>Portal de TCCs e materiais acadêmicos</h2>
+        <p>Pesquise, filtre e acesse trabalhos indexados da sua instituição.</p>
+      </div>
+
+      <div class="tcc-table-wrap">
+        <div class="tcc-filters">
+          <select class="filter-select">
+            <option>Todos os cursos</option>
+            <option>Ciência da Computação</option>
+            <option>Engenharia de Software</option>
+            <option>Sistemas de Informação</option>
+          </select>
+          <select class="filter-select">
+            <option>Qualquer ano</option>
+            <option>2024</option>
+            <option>2023</option>
+            <option>2022</option>
+          </select>
+          <select class="filter-select">
+            <option>Todos os tipos</option>
+            <option>TCC</option>
+            <option>Livro</option>
+            <option>Artigo</option>
+          </select>
+        </div>
+
+        <table class="tcc-table">
+          <thead>
+            <tr>
+              <th>Título</th>
+              <th>Autor</th>
+              <th>Curso</th>
+              <th>Ano</th>
+              <th>Tipo</th>
+              <th>Ação</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Modelagem Relacional e Normalização Aplicada</td>
+              <td>Ana Souza</td>
+              <td>Ciência da Computação</td>
+              <td>2023</td>
+              <td><span class="type-pill tcc">TCC</span></td>
+              <td><a href="#" class="link-btn">Ver resumo →</a></td>
+            </tr>
+            <tr>
+              <td>Redes Neurais Convolucionais para Imagens Médicas</td>
+              <td>Carlos Lima</td>
+              <td>Engenharia de Software</td>
+              <td>2024</td>
+              <td><span class="type-pill tcc">TCC</span></td>
+              <td><a href="#" class="link-btn">Ver resumo →</a></td>
+            </tr>
+            <tr>
+              <td>Fundamentos de Banco de Dados — Silberschatz</td>
+              <td>Abraham Silberschatz</td>
+              <td>—</td>
+              <td>2019</td>
+              <td><span class="type-pill livro">Livro</span></td>
+              <td><a href="#" class="link-btn">Ver resumo →</a></td>
+            </tr>
+            <tr>
+              <td>Segurança em APIs REST com OAuth 2.0</td>
+              <td>Marta Ferreira</td>
+              <td>Sistemas de Informação</td>
+              <td>2022</td>
+              <td><span class="type-pill artigo">Artigo</span></td>
+              <td><a href="#" class="link-btn">Ver resumo →</a></td>
+            </tr>
+            <tr>
+              <td>Padrões de Projeto com Design Patterns (GoF)</td>
+              <td>Gang of Four</td>
+              <td>—</td>
+              <td>1994</td>
+              <td><span class="type-pill livro">Livro</span></td>
+              <td><a href="#" class="link-btn">Ver resumo →</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="gamificacao" style="background: var(--navy-mid); border-top: 1px solid var(--border-dim);">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="label-tag">Comunidade</span>
+        <h2>Contribua e evolua na plataforma</h2>
+        <p>Cada contribuição melhora a plataforma para todos. E você sobe de nível.</p>
+      </div>
+
+      <div class="levels-grid">
+        <div class="level-card">
+          <span class="level-icon">📖</span>
+          <div class="level-name">Iniciante</div>
+          <div class="level-pts">0 — 500 pts</div>
+          <ul class="level-perks">
+            <li><span class="perk-check">✓</span> Pesquisar materiais</li>
+            <li><span class="perk-check">✓</span> Ver resumos</li>
+            <li><span class="perk-check">✓</span> Salvar favoritos</li>
+          </ul>
+        </div>
+        <div class="level-card" style="border-color: rgba(201,148,58,0.3);">
+          <span class="level-icon">🏛️</span>
+          <div class="level-name">Colaborador</div>
+          <div class="level-pts">500 — 2.000 pts</div>
+          <ul class="level-perks">
+            <li><span class="perk-check">✓</span> Enviar TCCs</li>
+            <li><span class="perk-check">✓</span> Dar feedback</li>
+            <li><span class="perk-check">✓</span> Corrigir resumos</li>
+          </ul>
+        </div>
+        <div class="level-card">
+          <span class="level-icon">⭐</span>
+          <div class="level-name">Especialista</div>
+          <div class="level-pts">2.000+ pts</div>
+          <ul class="level-perks">
+            <li><span class="perk-check">✓</span> Curar materiais</li>
+            <li><span class="perk-check">✓</span> Badge no perfil</li>
+            <li><span class="perk-check">✓</span> Acesso antecipado</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="perfil">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="label-tag">Área do Aluno</span>
+        <h2>Seu histórico, seus resumos, seu progresso</h2>
+        <p>Tudo que você pesquisou e salvou em um só lugar.</p>
+      </div>
+
+      <div class="profile-grid">
+        <div class="profile-card">
+          <div class="profile-header">
+            <div class="avatar">JS</div>
+            <div>
+              <div class="profile-name">João Silva</div>
+              <div class="profile-meta">Ciência da Computação · 4º semestre</div>
+            </div>
+          </div>
+          <div class="points-bar-wrap">
+            <div class="points-bar-label">
+              <span>Nível Colaborador</span>
+              <span style="color:var(--gold);">1.240 / 2.000 pts</span>
+            </div>
+            <div class="points-bar">
+              <div class="points-fill" style="width: 62%;"></div>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px;">
+            <div style="text-align:center;padding:12px;background:var(--navy-mid);border-radius:var(--radius-sm);">
+              <div style="font-size:20px;font-family:'Playfair Display',serif;font-weight:700;color:var(--gold);">34</div>
+              <div style="font-size:11px;color:var(--text-faint);margin-top:2px;">Resumos</div>
+            </div>
+            <div style="text-align:center;padding:12px;background:var(--navy-mid);border-radius:var(--radius-sm);">
+              <div style="font-size:20px;font-family:'Playfair Display',serif;font-weight:700;color:var(--teal);">7</div>
+              <div style="font-size:11px;color:var(--text-faint);margin-top:2px;">TCCs enviados</div>
+            </div>
+            <div style="text-align:center;padding:12px;background:var(--navy-mid);border-radius:var(--radius-sm);">
+              <div style="font-size:20px;font-family:'Playfair Display',serif;font-weight:700;color:var(--gold-pale);">12</div>
+              <div style="font-size:11px;color:var(--text-faint);margin-top:2px;">Feedbacks</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="profile-card">
+          <div style="font-size:13px;font-family:'DM Mono',monospace;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-faint);margin-bottom:14px;">Histórico recente</div>
+          <div class="history-item">
+            <span class="history-title">Normalização 3FN em Banco de Dados</span>
+            <span class="history-date">hoje</span>
+          </div>
+          <div class="history-item">
+            <span class="history-title">Redes Neurais — Conceitos Fundamentais</span>
+            <span class="history-date">ontem</span>
+          </div>
+          <div class="history-item">
+            <span class="history-title">Algoritmos de Ordenação — Comparativo</span>
+            <span class="history-date">21/06</span>
+          </div>
+          <div class="history-item">
+            <span class="history-title">Design Patterns: Observer e Strategy</span>
+            <span class="history-date">19/06</span>
+          </div>
+          <div class="history-item">
+            <span class="history-title">Segurança em APIs REST com OAuth 2.0</span>
+            <span class="history-date">17/06</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section" id="cadastro">
+    <div class="cta-inner">
+      <span class="label-tag" style="margin-bottom:20px;display:block;">Comece agora, de graça</span>
+      <h2>O conhecimento que você precisa estava esperando por uma plataforma <em>assim</em></h2>
+      <p>Crie sua conta, pesquise, aprenda e contribua. A Biblioteca de Alexandria se reconstruiu em código.</p>
+      <div class="btn-group">
+        <a href="cadastro.html" class="btn-primary">Criar conta gratuita</a>
+        <a href="comunidade.html" class="btn-secondary">Ver como funciona</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo">
+          <span class="nav-logo-text">Alexandr</span><span class="nav-logo-ia">IA</span>
+        </a>
+        <p>Plataforma acadêmica com IA baseada em RAG. Resumos confiáveis a partir de fontes reais.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Plataforma</h5>
+        <ul>
+          <li><a href="#">Busca inteligente</a></li>
+          <li><a href="tccs.html">Repositório de TCCs</a></li>
+          <li><a href="biblioteca.html">Biblioteca</a></li>
+          <li><a href="dashboards.html">Dashboard</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Comunidade</h5>
+        <ul>
+          <li><a href="contribuir.html">Contribuir</a></li>
+          <li><a href="contribuir.html">Enviar TCC</a></li>
+          <li><a href="contato.html">Dar feedback</a></li>
+          <li><a href="gamificacao.html">Gamificação</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Projeto</h5>
+        <ul>
+          <li><a href="sobre.html">Sobre o AlexandrIA</a></li>
+          <li><a href="#">Tecnologia RAG</a></li>
+          <li><a href="privacidade.html">Privacidade</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 AlexandrIA — Plataforma Acadêmica com IA</span>
+      <span>Construído com LangChain · ChromaDB · GPT</span>
+    </div>
+  </footer>
+
+</body>
+</html>

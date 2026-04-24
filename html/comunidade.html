@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Comunidade AlexandrIA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --navy: #0B1523; --navy-mid: #132035; --navy-card: #162540; --gold: #C9943A; --gold-light: #E8B96A; --white: #FFFFFF; --text-dim: #A0AEC0; }
+    body { font-family: 'DM Sans', sans-serif; background-color: var(--navy); color: var(--white); }
+    nav { padding: 1.25rem 8%; border-bottom: 1px solid rgba(201, 148, 58, 0.2); }
+    .container { max-width: 900px; margin: 4rem auto; padding: 0 2rem; }
+    h1 { font-family: 'Playfair Display', serif; color: var(--gold); margin-bottom: 2rem; }
+    .chat-bubble { background: var(--navy-card); border: 1px solid rgba(201, 148, 58, 0.1); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; border-left: 4px solid var(--gold); }
+    .meta { font-size: 0.8rem; color: var(--gold-light); margin-bottom: 0.5rem; font-weight: 700; }
+    .contrib-tag { font-size: 0.75rem; color: var(--text-dim); display: block; margin-top: 10px; font-family: 'DM Mono', monospace; }
+    .input-area { background: var(--navy-mid); padding: 2rem; border-radius: 12px; border: 1px solid var(--gold); margin-top: 3rem; }
+    textarea { width: 100%; background: transparent; border: none; color: white; outline: none; font-size: 1rem; resize: none; }
+    .btn-submit { background: var(--gold); color: var(--navy); padding: 0.8rem 2rem; border: none; border-radius: 4px; font-weight: 700; cursor: pointer; float: right; margin-top: 10px; }
+    .btn-back { display: inline-block; margin-bottom: 2rem; color: var(--text-dim); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <nav><span style="color:var(--gold);font-family:'Playfair Display';font-weight:700;font-size:1.5rem">Alexandr<span style="color:white;font-style:italic">IA</span></span></nav>
+  <div class="card" style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem; padding: 1rem; background: var(--navy-card); border-radius: 8px;">
+  <div style="background: var(--navy-light); border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">🧔🏽</div>
+  <div>
+    <p style="color: var(--gold); font-weight: 700;">Ricardo Santos</p>
+    <p style="font-size: 0.8rem; color: var(--text-dim);">Gestão de TI • FATEC Osasco</p>
+  </div>
+</div>
+
+<div class="card" style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem; padding: 1rem; background: var(--navy-card); border-radius: 8px;">
+  <div style="background: var(--navy-light); border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">👩🏾‍💻</div>
+  <div>
+    <p style="color: var(--gold); font-weight: 700;">Juliana Lima</p>
+    <p style="font-size: 0.8rem; color: var(--text-dim);">Análise de Dados • FATEC Barueri</p>
+  </div>
+</div>
+
+<div class="card" style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem; padding: 1rem; background: var(--navy-card); border-radius: 8px;">
+  <div style="background: var(--navy-light); border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">🧑🏼‍🎨</div>
+  <div>
+    <p style="color: var(--gold); font-weight: 700;">Mateus Ferraz</p>
+    <p style="font-size: 0.8rem; color: var(--text-dim);">Design de Produto • FATEC Osasco</p>
+  </div>
+</div>
+  <div class="container">
+    <a href="perfil.html" class="btn-back">← Voltar ao Início</a>
+    <h1>Histórico de Modificações</h1>
+    
+    <div class="chat-bubble">
+      <p class="meta">André Silva • 20/04/2026</p>
+      <p>Realizei o ajuste das referências bibliográficas para o padrão ABNT 2024.</p>
+      <span class="contrib-tag">Trabalho: Redes Neurais | Assunto: Formatação</span>
+    </div>
+    <div class="chat-bubble">
+      <p class="meta">Beatriz Costa • 19/04/2026</p>
+      <p>Adicionei um diagrama explicativo sobre a arquitetura de banco de dados.</p>
+      <span class="contrib-tag">Trabalho: E-commerce SQL | Assunto: Modelagem</span>
+    </div>
+    <div class="chat-bubble">
+      <p class="meta">Carlos Mendes • 18/04/2026</p>
+      <p>Corrigi o erro de lógica no script de automação do Arduino.</p>
+      <span class="contrib-tag">Trabalho: IoT Farm | Assunto: Código C++</span>
+    </div>
+    <div class="chat-bubble">
+      <p class="meta">Daniela Oliveira • 15/04/2026</p>
+      <p>Inseri uma nota explicativa sobre a LGPD no capítulo de segurança.</p>
+      <span class="contrib-tag">Trabalho: App Fintech | Assunto: Jurídico</span>
+    </div>
+
+    <div class="input-area">
+      <textarea rows="3" placeholder="Escreva sua contribuição ou comentário..."></textarea>
+      <button class="btn-submit">Enviar</button>
+      <div style="clear:both"></div>
+    </div>
+  </div>
+</body>
+</html>

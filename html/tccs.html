@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Repositório de TCCs — AlexandrIA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* CSS INTEGRADO - IDENTICO À SUA INDEX_ORIGINAL */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy:       #0B1523;
+      --navy-mid:   #132035;
+      --navy-light: #1C2E47;
+      --navy-card:  #162540;
+      --gold:       #C9943A;
+      --gold-light: #E8B96A;
+      --gold-pale:  #F5DFA8;
+      --white:      #FFFFFF;
+      --text-dim:   #A0AEC0;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    body { font-family: 'DM Sans', sans-serif; background-color: var(--navy); color: var(--white); line-height: 1.6; }
+    h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--gold); }
+    
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 8%; background: rgba(11, 21, 35, 0.95); border-bottom: 1px solid rgba(201, 148, 58, 0.2); position: sticky; top: 0; z-index: 1000; }
+    .nav-logo { text-decoration: none; display: flex; align-items: center; gap: 4px; }
+    .nav-logo-text { color: var(--gold); font-size: 1.5rem; font-weight: 700; font-family: 'Playfair Display', serif; }
+    .nav-logo-ia { color: var(--white); font-style: italic; font-size: 1.25rem; font-family: 'Playfair Display', serif; }
+    
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; }
+    .nav-links a { text-decoration: none; color: var(--text-dim); font-size: 0.9rem; transition: var(--transition); }
+    .nav-links a:hover { color: var(--gold); }
+    .btn-nav { background-color: var(--gold); color: var(--navy) !important; padding: 0.6rem 1.25rem; border-radius: 4px; font-weight: 600; }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 4rem 2rem; }
+    
+    /* ── FILTROS E BUSCA ── */
+    .search-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; gap: 2rem; }
+    .filter-group { flex: 1; display: flex; gap: 1rem; }
+    .filter-item { flex: 1; }
+    .filter-item label { display: block; font-size: 0.75rem; color: var(--gold-light); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 1px; }
+    
+    .input-custom { 
+      width: 100%; background: var(--navy-mid); border: 1px solid rgba(201, 148, 58, 0.3); 
+      padding: 0.8rem; border-radius: 4px; color: white; outline: none; transition: var(--transition);
+    }
+    .input-custom:focus { border-color: var(--gold); box-shadow: 0 0 10px rgba(201, 148, 58, 0.1); }
+
+    /* ── TABELA ACADÊMICA ── */
+    .table-container { background: var(--navy-card); border: 1px solid rgba(201, 148, 58, 0.15); border-radius: 12px; overflow: hidden; }
+    table { width: 100%; border-collapse: collapse; text-align: left; }
+    th { background: rgba(201, 148, 58, 0.05); color: var(--gold); padding: 1.2rem; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; border-bottom: 1px solid rgba(201, 148, 58, 0.2); }
+    td { padding: 1.2rem; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.9rem; color: var(--text-dim); }
+    tr:hover td { background: rgba(255,255,255,0.02); color: var(--white); }
+    
+    .badge-tipo { font-family: 'DM Mono', monospace; font-size: 0.7rem; padding: 0.3rem 0.6rem; border-radius: 4px; border: 1px solid currentColor; }
+    .badge-tcc { color: var(--gold-light); border-color: rgba(201, 148, 58, 0.3); }
+
+    .link-action { color: var(--gold); text-decoration: none; font-weight: 600; font-size: 0.85rem; transition: var(--transition); }
+    .link-action:hover { color: var(--gold-light); text-decoration: underline; }
+
+    footer { background-color: var(--navy-mid); padding: 5rem 8% 2rem; border-top: 1px dotted rgba(201, 148, 58, 0.3); margin-top: 5rem; }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr repeat(3, 1fr); gap: 4rem; }
+    .footer-brand p { color: var(--text-dim); font-size: 0.9rem; margin-top: 1.5rem; }
+    .footer-col h5 { color: var(--gold); font-size: 1rem; margin-bottom: 2rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 1rem; }
+    .footer-col ul li a { text-decoration: none; color: var(--text-dim); font-size: 0.9rem; transition: var(--transition); }
+    .footer-col ul li a:hover { color: var(--gold); }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index_original.html" class="nav-logo">
+      <span class="nav-logo-text">Alexandr</span><span class="nav-logo-ia">IA</span>
+    </a>
+    <div class="nav-links">
+      <a href="index_original.html">Início</a>
+      <a href="tccs.html" style="color: var(--gold);">Repositório</a>
+      <a href="comunidade.html">Comunidade</a>
+      <a href="perfil.html" class="btn-nav">Meu Perfil</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem;">Repositório Acadêmico</h1>
+    <p style="color: var(--text-dim); margin-bottom: 3rem;">Explore trabalhos de conclusão de curso e artigos científicos indexados pela nossa IA.</p>
+
+    <div class="search-header">
+      <div class="filter-group">
+        <div class="filter-item">
+          <label>Pesquisar termo</label>
+          <input type="text" class="input-custom" placeholder="Ex: Machine Learning, Drones...">
+        </div>
+        <div class="filter-item" style="flex: 0 0 200px;">
+          <label>Curso</label>
+          <select class="input-custom">
+            <option>Todos os cursos</option>
+            <option>Dev. Multiplataforma</option>
+            <option>Gestão Empresarial</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn-nav" style="height: 48px; border: none; cursor: pointer;">Filtrar Resultados</button>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Título do Trabalho</th>
+            <th>Autor</th>
+            <th>Ano</th>
+            <th>Área</th>
+            <th>Ação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <span class="badge-tipo badge-tcc">TCC</span><br>
+              <span style="color: var(--white); font-weight: 500;">Sistema de Monitoramento com Drones para Fire Prevention</span>
+            </td>
+            <td>Michelle Souza</td>
+            <td>2025</td>
+            <td>Tecnologia</td>
+            <td><a href="resumo.html" class="link-action">Ver Resumo IA →</a></td>
+          </tr>
+          <tr>
+            <td>
+              <span class="badge-tipo badge-tcc">Artigo</span><br>
+              <span style="color: var(--white); font-weight: 500;">Análise de Sentimentos em Fragrâncias e Emoções</span>
+            </td>
+            <td>Helena & Maduh</td>
+            <td>2026</td>
+            <td>Inovação</td>
+            <td><a href="resumo.html" class="link-action">Ver Resumo IA →</a></td>
+          </tr>
+          <tr>
+            <td>
+              <span class="badge-tipo badge-tcc">TCC</span><br>
+              <span style="color: var(--white); font-weight: 500;">Otimização de Filas em Cafetarias Digitais (Cantec)</span>
+            </td>
+            <td>Grupo Genius</td>
+            <td>2026</td>
+            <td>UX/UI</td>
+            <td><a href="resumo.html" class="link-action">Ver Resumo IA →</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo"><span class="nav-logo-text">Alexandr</span><span class="nav-logo-ia">IA</span></a>
+        <p>Plataforma acadêmica com IA baseada em RAG. Resumos confiáveis a partir de fontes reais.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Plataforma</h5>
+        <ul>
+          <li><a href="#">Busca inteligente</a></li>
+          <li><a href="tccs.html">Repositório de TCCs</a></li>
+          <li><a href="#">Dashboard</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Comunidade</h5>
+        <ul>
+          <li><a href="#">Contribuir</a></li>
+          <li><a href="#">Enviar TCC</a></li>
+          <li><a href="#">Gamificação</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Projeto</h5>
+        <ul>
+          <li><a href="index_original.html">Sobre o AlexandrIA</a></li>
+          <li><a href="#">Tecnologia RAG</a></li>
+          <li><a href="#">Contato</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

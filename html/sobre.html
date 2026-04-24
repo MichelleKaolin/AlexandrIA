@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sobre o Projeto — AlexandrIA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --navy: #0B1523; --navy-mid: #132035; --navy-card: #162540; --gold: #C9943A; --gold-light: #E8B96A; --white: #FFFFFF; --text-dim: #A0AEC0; }
+    body { font-family: 'DM Sans', sans-serif; background-color: var(--navy); color: var(--white); line-height: 1.6; }
+    nav { padding: 1.25rem 8%; border-bottom: 1px solid rgba(201, 148, 58, 0.2); background: rgba(11, 21, 35, 0.95); }
+    .container { max-width: 900px; margin: 3rem auto; padding: 0 2rem; }
+    
+    h1 { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 2.8rem; margin-bottom: 1rem; }
+    .btn-back { display: inline-block; margin-bottom: 2rem; color: var(--text-dim); text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
+    .btn-back:hover { color: var(--gold); }
+
+    .content-section { margin-bottom: 3rem; }
+    h2 { font-family: 'Playfair Display', serif; color: var(--gold-light); font-size: 1.6rem; margin-bottom: 1rem; }
+    p { color: var(--text-dim); margin-bottom: 1.2rem; text-align: justify; }
+
+    /* Tags de Tecnologia */
+    .tech-stack { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1rem; }
+    .tech-tag { background: var(--navy-mid); border: 1px solid var(--gold); color: var(--gold-light); padding: 5px 15px; border-radius: 20px; font-size: 0.85rem; font-weight: 500; }
+
+    /* Seção de Melhorias */
+    .roadmap-list { list-style: none; }
+    .roadmap-item { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; color: var(--text-dim); }
+    .roadmap-item::before { content: "◈"; color: var(--gold); }
+
+    /* Links de Contato */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem; }
+    .contact-link { background: var(--navy-card); border: 1px solid rgba(201, 148, 58, 0.2); padding: 1.5rem; border-radius: 12px; text-decoration: none; color: var(--white); text-align: center; transition: 0.3s; }
+    .contact-link:hover { border-color: var(--gold); background: var(--navy-mid); transform: translateY(-3px); }
+    .contact-link strong { display: block; color: var(--gold); margin-bottom: 5px; font-size: 1.1rem; }
+
+  </style>
+</head>
+<body>
+
+  <nav><span style="color:var(--gold);font-family:'Playfair Display';font-weight:700;font-size:1.5rem">Alexandr<span style="color:white;font-style:italic">IA</span></span></nav>
+
+  <div class="container">
+    <a href="index_original.html" class="btn-back">← Voltar ao Início</a>
+    
+    <div class="content-section">
+      <h1>Sobre o Projeto</h1>
+      <p>O <strong>AlexandrIA</strong> nasceu dentro dos corredores da FATEC Osasco como uma resposta à dificuldade de centralizar e extrair conhecimento útil dos milhares de TCCs e artigos produzidos anualmente. A ideia foi criar mais do que um repositório: um ecossistema inteligente que "lê" o material acadêmico e auxilia o aluno através de Inteligência Artificial Generativa.</p>
+    </div>
+
+    <div class="content-section">
+      <h2>Ferramentas & Tecnologias</h2>
+      <p>Para construir uma plataforma robusta e escalável, utilizamos o que há de mais moderno no desenvolvimento multiplataforma:</p>
+      <div class="tech-stack">
+        <span class="tech-tag">Java (Spring Boot)</span>
+        <span class="tech-tag">Python (FastAPI)</span>
+        <span class="tech-tag">LangChain (RAG)</span>
+        <span class="tech-tag">MySQL</span>
+        <span class="tech-tag">ChromaDB</span>
+        <span class="tech-tag">HTML5/CSS3 Custom</span>
+        <span class="tech-tag">Kotlin (Mobile Bridge)</span>
+      </div>
+    </div>
+
+    <div class="content-section">
+      <h2>Próximos Passos (Roadmap)</h2>
+      <ul class="roadmap-list">
+        <li class="roadmap-item">Implementação de transcrição de áudio para bancas de TCC.</li>
+        <li class="roadmap-item">Integração com a API da biblioteca física da FATEC.</li>
+        <li class="roadmap-item">Expansão do sistema de gamificação para recompensas físicas.</li>
+      </ul>
+    </div>
+
+    <div class="content-section">
+      <h2>Desenvolvedora</h2>
+      <p>Desenvolvido por <strong>Michelle Kaolin Vieira Souza</strong>, estudante de Desenvolvimento de Software Multiplataforma. Este projeto é uma prova de conceito que une paixão por UX Writing, Back-end sólido e inovação em IA.</p>
+      
+      <div class="contact-grid">
+        <a href="https://github.com/MichelleKaolin/AlexandrIA" target="_blank" class="contact-link">
+          <strong>GitHub</strong>
+          @MichelleKaolin
+        </a>
+        <a href="https://www.linkedin.com/in/michellekaolinvieirasouza" target="_blank" class="contact-link">
+          <strong>LinkedIn</strong>
+          Michelle Kaolin
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

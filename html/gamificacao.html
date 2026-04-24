@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Gamificação — AlexandrIA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --navy: #0B1523; --navy-mid: #132035; --navy-card: #162540; --gold: #C9943A; --gold-light: #E8B96A; --white: #FFFFFF; --text-dim: #A0AEC0; }
+    body { font-family: 'DM Sans', sans-serif; background-color: var(--navy); color: var(--white); line-height: 1.6; }
+    nav { padding: 1.25rem 8%; border-bottom: 1px solid rgba(201, 148, 58, 0.2); background: rgba(11, 21, 35, 0.95); }
+    .container { max-width: 1000px; margin: 3rem auto; padding: 0 2rem; }
+    h1 { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 2.5rem; margin-bottom: 1rem; text-align: center; }
+    .btn-back { display: inline-block; margin-bottom: 2rem; color: var(--text-dim); text-decoration: none; font-size: 0.9rem; }
+    .btn-back:hover { color: var(--gold); }
+    
+    .intro-text { text-align: center; color: var(--text-dim); margin-bottom: 4rem; max-width: 700px; margin-left: auto; margin-right: auto; }
+    
+    .levels-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 4rem; }
+    .level-card { background: var(--navy-card); border: 1px solid rgba(201, 148, 58, 0.15); border-radius: 12px; padding: 2rem; text-align: center; transition: 0.3s; }
+    .level-card:hover { transform: translateY(-5px); border-color: var(--gold); }
+    .level-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+    .level-name { color: var(--gold); font-family: 'Playfair Display', serif; font-size: 1.25rem; margin-bottom: 0.5rem; }
+    .level-xp { font-size: 0.8rem; color: var(--gold-light); font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+    
+    .importance-section { background: var(--navy-mid); padding: 3rem; border-radius: 12px; border-left: 4px solid var(--gold); }
+    .importance-section h2 { font-family: 'Playfair Display', serif; color: var(--gold); margin-bottom: 1.5rem; }
+    .importance-section p { color: var(--text-dim); margin-bottom: 1rem; }
+  </style>
+</head>
+<body>
+  <nav><span style="color:var(--gold);font-family:'Playfair Display';font-weight:700;font-size:1.5rem">Alexandr<span style="color:white;font-style:italic">IA</span></span></nav>
+  <div class="container">
+    <a href="perfil.html" class="btn-back">← Voltar ao Início</a>
+    <h1>Sistema de Reconhecimento</h1>
+    <p class="intro-text">Nossa plataforma valoriza cada interação. Ao contribuir com a comunidade acadêmica, você sobe na hierarquia do conhecimento e desbloqueia novos poderes.</p>
+    
+    <div class="levels-grid">
+      <div class="level-card">
+        <span class="level-icon">🌱</span>
+        <p class="level-name">Iniciante</p>
+        <p class="level-xp">0 - 499 XP</p>
+        <p style="font-size: 0.8rem; color: var(--text-dim); margin-top: 10px;">Acesso ao repositório e geração de resumos básicos.</p>
+      </div>
+      <div class="level-card">
+        <span class="level-icon">🤝</span>
+        <p class="level-name">Colaborador</p>
+        <p class="level-xp">500 - 1.999 XP</p>
+        <p style="font-size: 0.8rem; color: var(--text-dim); margin-top: 10px;">Permissão para enviar TCCs e sugerir correções na IA.</p>
+      </div>
+      <div class="level-card">
+        <span class="level-icon">💎</span>
+        <p class="level-name">Especialista</p>
+        <p class="level-xp">2.000 - 4.999 XP</p>
+        <p style="font-size: 0.8rem; color: var(--text-dim); margin-top: 10px;">Badge dourada no perfil e curadoria oficial de materiais.</p>
+      </div>
+      <div class="level-card">
+        <span class="level-icon">🏛️</span>
+        <p class="level-name">Mestre</p>
+        <p class="level-xp">5.000+ XP</p>
+        <p style="font-size: 0.8rem; color: var(--text-dim); margin-top: 10px;">Acesso total e influência nas diretrizes da plataforma.</p>
+      </div>
+    </div>
+
+    <div class="importance-section">
+      <h2>Por que a Gamificação?</h2>
+      <p>A gamificação no AlexandrIA não é apenas sobre pontos; é sobre <strong>qualidade acadêmica</strong>. Ao incentivar o feedback e o upload de materiais verificados, garantimos que a nossa base de dados RAG seja a mais precisa possível.</p>
+      <p>Quando você corrige um resumo ou compartilha um TCC nota 10, você ajuda a IA a aprender padrões melhores, beneficiando todos os alunos da instituição.</p>
+    </div>
+  </div>
+</body>
+</html>
